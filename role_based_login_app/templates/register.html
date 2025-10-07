@@ -1,27 +1,149 @@
 {% extends "master.html" %}
 {% load static %}
 
-{% block title %}{% endblock %}
+{% block title %}Register{% endblock %}
 
+{% block content %}
+<div class="register-box container">
+    <h1>Create Account</h1>
 
-{% block content %}   
-    <div class="register-box container">
-        <h1>Create Account</h1>
-        {% if error_message %}
-            <div style="color: red; font-weight: bold; margin-bottom: 10px;">
-                {{ error_message }}
-            </div>
-        {% endif %}
+    {% if error_message %}
+        <p class="error-text">{{ error_message }}</p>
+    {% endif %}
 
-        <form method="POST">
-            {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-            {{form.as_p}}
+        <p>
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" id="id_username" required>
+        </p>
 
-            <button type="submit">Register</button>
-        </form>
-        <span class="login-link">
-            Already have an account? <a href="{% url 'login' %}">Login</a>
-        </span>
-    </div>
+        <p>
+            <label for="id_email">Email:</label>
+            <input type="email" name="email" id="id_email" required>
+        </p>
+
+        <p>
+            <label for="id_password">Password:</label>
+            <input type="password" name="password" id="id_password" required>
+        </p>
+
+        <p>
+            <label for="id_confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" id="id_confirm_password" required>
+        </p>
+
+        <p>
+            <label for="id_role">Role:</label>
+            <select name="role" id="id_role" required class="role-dropdown">
+                <option value="admin">Admin</option>
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select>
+        </p>
+
+        <div style="text-align: center;">
+            <button type="submit" class="register-btn">Register</button>
+        </div>
+    </form>
+
+    <span class="login-link">
+        Already have an account? <a href="{% url 'login' %}">Login</a>
+    </span>
+</div>
+
+<style>
+/* Container box */
+
+.register-box.container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.register-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.error-text {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Form fields */
+form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: rgb(190, 19, 190);
+    box-shadow: 0 0 5px rgba(190, 19, 190, 0.5);
+}
+
+/* Styled dropdown */
+.role-dropdown {
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.role-dropdown option {
+    padding: 10px;
+}
+
+/* Submit button */
+.register-btn {
+    display: block;
+    width: 100%;
+    background-color: rgb(190, 19, 190);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+    background-color: rgb(202, 63, 202);
+}
+
+/* Login link */
+.login-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.login-link a {
+    color: rgb(190, 19, 190);
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+</style>
 {% endblock %}

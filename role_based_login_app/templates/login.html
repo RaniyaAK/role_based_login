@@ -1,48 +1,127 @@
 {% extends "master.html" %}
 {% load static %}
 
-{% block title %}{% endblock %}
-
+{% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="login containe" >
+<div class="register-box container">  <!-- Using same container style as registration -->
     <h1>Login</h1>
 
+    <!-- 🔴 Custom error message -->
     {% if error %}
-      <p style="color: red; text-align: center;">{{ error }}</p>
+        <p class="error-text">{{ error }}</p>
     {% endif %}
 
     {% if error_message %}
-    <div class="alert">
-        {{ error_message }}
-    </div>
+        <p class="error-text">{{ error_message }}</p>
     {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'login' %}" method="post" novalidate>
         {% csrf_token %}
 
-        {{form.as_p}}
-        <button type="submit">Login</button>
+        <!-- Render fields manually for styling -->
+        <p>
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+        </p>
+
+        <p>
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+        </p>
+
+        <div style="text-align: center;">
+            <button type="submit" class="register-btn">Login</button>
+        </div>
     </form>
-    <span class="signup-link">
-            Don't have an account?<a href="{% url 'register' %}"> Sign up</a>
+
+    <span class="login-link">
+        Don't have an account? <a href="{% url 'register' %}">Sign up</a>
     </span>
 </div>
-
-
-    </form>
-</div>
-
 <style>
-.alert {
- 
-    color:#f03426;
-    margin-bottom: 20px;
-    font-weight: bold; 
+    
+/* Container box */
+.register-box.container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.register-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Red error text */
+.error-text {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Form fields */
+form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Inputs focus */
+input:focus, select:focus {
+    outline: none;
+    border-color: rgb(190, 19, 190);
+    box-shadow: 0 0 8px rgba(190, 19, 190, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Submit button */
+.register-btn {
+    display: block;
+    width: 100%;
+    background-color: rgb(190, 19, 190);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.register-btn:hover {
+    background-color: rgb(220, 50, 220);
+}
+
+/* Sign up link */
+.login-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.login-link a {
+    color: rgb(202, 63, 202);
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }
 </style>
 {% endblock %}
- 
-
-             
-           
