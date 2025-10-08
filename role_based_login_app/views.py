@@ -22,6 +22,10 @@ def register(request):
         if User.objects.filter(username=username).exists():
             error_message = "Username already exists."
 
+        # Step 1: Check if email exists
+        if User.objects.filter(email=email).exists():
+            error_message = "Email already exists."    
+
         # Step 2: Check if passwords match
         elif password != confirm_password:
             error_message = "Passwords do not match."

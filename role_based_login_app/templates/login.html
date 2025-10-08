@@ -4,10 +4,9 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="register-box container">  <!-- Using same container style as registration -->
+<div class="login-register-box container">  
     <h1>Login</h1>
 
-    <!-- 🔴 Custom error message -->
     {% if error %}
         <p class="error-text">{{ error }}</p>
     {% endif %}
@@ -19,7 +18,7 @@
     <form action="{% url 'login' %}" method="post" novalidate>
         {% csrf_token %}
 
-        <!-- Render fields manually for styling -->
+       
         <p>
             <label for="id_username">Username:</label>
             {{ form.username }}
@@ -31,34 +30,44 @@
         </p>
 
         <div style="text-align: center;">
-            <button type="submit" class="register-btn">Login</button>
+            <button type="submit" class="login-register-btn">Login</button>
         </div>
     </form>
 
-    <span class="login-link">
+    <span class="login-register-link">
         Don't have an account? <a href="{% url 'register' %}">Sign up</a>
     </span>
 </div>
+{% endblock %}
+<!-- 
 <style>
-    
-/* Container box */
-.register-box.container {
-    max-width: 400px;
-    margin: 60px auto;
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff; 
+}
+
+.login-register-box.container {
+    width: 100%;          
+    max-width: 400px;     
     padding: 30px;
     border: 1px solid #ccc;
     border-radius: 12px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box; 
 }
 
-/* Title */
-.register-box h1 {
+
+.login-register-box h1 {
     text-align: center;
     margin-bottom: 25px;
 }
 
-/* Red error text */
 .error-text {
     color: red;
     font-weight: bold;
@@ -66,14 +75,12 @@
     margin-bottom: 15px;
 }
 
-/* Form fields */
 form p {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
 }
 
-/* Inputs focus */
 input:focus, select:focus {
     outline: none;
     border-color: rgb(190, 19, 190);
@@ -88,8 +95,7 @@ input {
     transition: all 0.3s ease-in-out;
 }
 
-/* Submit button */
-.register-btn {
+.login-register-btn {
     display: block;
     width: 100%;
     background-color: rgb(190, 19, 190);
@@ -103,25 +109,23 @@ input {
     transition: background-color 0.3s ease-in-out;
 }
 
-.register-btn:hover {
+.login-register-btn:hover {
     background-color: rgb(220, 50, 220);
 }
 
-/* Sign up link */
-.login-link {
+.login-register-link {
     display: block;
     text-align: center;
     margin-top: 15px;
     font-size: 16px;
 }
 
-.login-link a {
+.login-register-link a {
     color: rgb(202, 63, 202);
     text-decoration: none;
 }
 
-.login-link a:hover {
+.login-register-link a:hover {
     text-decoration: underline;
 }
 </style>
-{% endblock %}

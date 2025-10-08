@@ -4,7 +4,7 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<div class="register-box container">
+<div class="login-register-box container">
     <h1>Create Account</h1>
 
     {% if error_message %}
@@ -44,29 +44,41 @@
         </p>
 
         <div style="text-align: center;">
-            <button type="submit" class="register-btn">Register</button>
+            <button type="submit" class="login-register-btn">Register</button>
         </div>
     </form>
 
-    <span class="login-link">
+    <span class="login-register-link">
         Already have an account? <a href="{% url 'login' %}">Login</a>
     </span>
 </div>
+{% endblock %}
 
+
+<!-- 
 <style>
-/* Container box */
 
-.register-box.container {
-    max-width: 400px;
-    margin: 60px auto;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0;
+    background-color: #fff; 
+}
+
+.login-register-box.container {
+    width: 100%;         
+    max-width: 400px;     
     padding: 30px;
     border: 1px solid #ccc;
     border-radius: 12px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box; 
 }
 
-.register-box h1 {
+.login-register-box h1 {
     text-align: center;
     margin-bottom: 25px;
 }
@@ -78,7 +90,6 @@
     margin-bottom: 15px;
 }
 
-/* Form fields */
 form p {
     display: flex;
     flex-direction: column;
@@ -99,7 +110,6 @@ input:focus, select:focus {
     box-shadow: 0 0 5px rgba(190, 19, 190, 0.5);
 }
 
-/* Styled dropdown */
 .role-dropdown {
     background-color: #fff;
     color: #333;
@@ -110,8 +120,7 @@ input:focus, select:focus {
     padding: 10px;
 }
 
-/* Submit button */
-.register-btn {
+.login-register-btn {
     display: block;
     width: 100%;
     background-color: rgb(190, 19, 190);
@@ -125,25 +134,24 @@ input:focus, select:focus {
     transition: background-color 0.3s;
 }
 
-.register-btn:hover {
+.login-register-btn:hover {
     background-color: rgb(202, 63, 202);
 }
 
-/* Login link */
-.login-link {
+.login-register-link {
     display: block;
     text-align: center;
     margin-top: 15px;
     font-size: 16px;
 }
 
-.login-link a {
+.login-register-link a {
     color: rgb(190, 19, 190);
     text-decoration: none;
 }
 
-.login-link a:hover {
+.login-register-link a:hover {
     text-decoration: underline;
 }
 </style>
-{% endblock %}
+
